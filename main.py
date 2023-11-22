@@ -47,8 +47,8 @@ def mail_mixer(array1, array2):
     return correos,etiquetas
 
 #arreglos corresponidientes de cada conjunto, para entrenamiento y pruebas
-spam =mail_extractor(spam_dir,500)#400
-easy_ham=mail_extractor(easy_ham_dir,500)#400
+spam =mail_extractor(spam_dir,550)#400
+easy_ham=mail_extractor(easy_ham_dir,550)#400
 
 
 

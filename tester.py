@@ -7,21 +7,24 @@ from MLP_batch import *
 import random
 from sklearn.metrics import accuracy_score, confusion_matrix, f1_score
 from keras.preprocessing.sequence import pad_sequences
+from plot_3d import *
 
 spam_test = "spam_test\\"
 not_spam_test = "not_spam_test\\"
 
 
 def mail_extractor(dir,limit):
-    files= os.listdir(dir)
-    max_files=files[:limit]
+    #files= 
+    #max_files=files[:limit]
     mails=[]
-    for archivo in max_files:
+    
+    for archivo in os.listdir(dir):
         if archivo.endswith(".txt"):
             with open(os.path.join(dir, archivo), "r", encoding="utf-8",errors="ignore") as file:
                 contenido = file.read()
                 mails.append(contenido)
-    return mails
+    selected_files = random.sample(mails, 400)
+    return selected_files
 
 def mail_mixer(array1, array2):
     emails = [(correo, 1) for correo in array1] + [(correo, 0) for correo in array2]
@@ -42,8 +45,8 @@ name=input()
 
 net=joblib.load(f"joblib_objects\\{name}.joblib")
 
-spam =mail_extractor(spam_test,400)
-not_spam=mail_extractor(not_spam_test,400)
+spam =mail_extractor(spam_test,500)
+not_spam=mail_extractor(not_spam_test,500)
 
 mails,labels=mail_mixer(spam, not_spam)
 
